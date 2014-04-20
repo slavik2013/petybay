@@ -23,19 +23,6 @@ public class Breed implements Serializable {
 
 	private String title;
 
-	//bi-directional many-to-many association to Pet
-	@ManyToMany
-	@JoinTable(
-		name="pet_has_breed"
-		, joinColumns={
-			@JoinColumn(name="breed_id")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="pet_id")
-			}
-		)
-	private List<Pet> pets;
-
 	public Breed() {
 	}
 
@@ -62,13 +49,4 @@ public class Breed implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-	public List<Pet> getPets() {
-		return this.pets;
-	}
-
-	public void setPets(List<Pet> pets) {
-		this.pets = pets;
-	}
-
 }

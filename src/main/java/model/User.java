@@ -30,10 +30,6 @@ public class User implements Serializable {
 	@Column(name="phone_number")
 	private String phoneNumber;
 
-	//bi-directional many-to-one association to Pet
-	@OneToMany(mappedBy="user")
-	private List<Pet> pets;
-
 	//bi-directional many-to-one association to Location
 	@ManyToOne
 	private Location location;
@@ -87,28 +83,6 @@ public class User implements Serializable {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
-	}
-
-	public List<Pet> getPets() {
-		return this.pets;
-	}
-
-	public void setPets(List<Pet> pets) {
-		this.pets = pets;
-	}
-
-	public Pet addPet(Pet pet) {
-		getPets().add(pet);
-		pet.setUser(this);
-
-		return pet;
-	}
-
-	public Pet removePet(Pet pet) {
-		getPets().remove(pet);
-		pet.setUser(null);
-
-		return pet;
 	}
 
 	public Location getLocation() {

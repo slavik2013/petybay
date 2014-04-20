@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Pet.findAll", query="SELECT p FROM Pet p")
-@JsonIgnoreProperties({ "location", "user" , "photos" , "breeds"})
+//@JsonIgnoreProperties({ "location", "user" , "photos" , "breeds"})
 public class Pet implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -59,8 +59,16 @@ public class Pet implements Serializable {
 	@ManyToOne
 	private Location location;
 
-	//bi-directional many-to-many association to Breed
-	@ManyToMany(mappedBy="pets", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="pet_has_breed"
+            , joinColumns={
+            @JoinColumn(name="pet_id")
+    }
+            , inverseJoinColumns={
+            @JoinColumn(name="breed_id")
+    }
+    )
 	private List<Breed> breeds;
 
 	//bi-directional many-to-one association to Photo

@@ -26,14 +26,6 @@ public class Location implements Serializable {
 
 	private String region;
 
-	//bi-directional many-to-one association to Pet
-	@OneToMany(mappedBy="location")
-	private List<Pet> pets;
-
-	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="location")
-	private List<User> users;
-
 	public Location() {
 	}
 
@@ -67,50 +59,6 @@ public class Location implements Serializable {
 
 	public void setRegion(String region) {
 		this.region = region;
-	}
-
-	public List<Pet> getPets() {
-		return this.pets;
-	}
-
-	public void setPets(List<Pet> pets) {
-		this.pets = pets;
-	}
-
-	public Pet addPet(Pet pet) {
-		getPets().add(pet);
-		pet.setLocation(this);
-
-		return pet;
-	}
-
-	public Pet removePet(Pet pet) {
-		getPets().remove(pet);
-		pet.setLocation(null);
-
-		return pet;
-	}
-
-	public List<User> getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
-	public User addUser(User user) {
-		getUsers().add(user);
-		user.setLocation(this);
-
-		return user;
-	}
-
-	public User removeUser(User user) {
-		getUsers().remove(user);
-		user.setLocation(null);
-
-		return user;
 	}
 
 }
